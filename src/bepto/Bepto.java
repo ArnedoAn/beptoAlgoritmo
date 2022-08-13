@@ -14,7 +14,11 @@ public class Bepto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+<<<<<<< HEAD
         System.out.println("Hola mundo12344");
+=======
+        System.out.println("Hola mundo1234");
+>>>>>>> 3a4fcfea813ef6e4baa82b0098bdfcd78c971e88
     }
     
 }
