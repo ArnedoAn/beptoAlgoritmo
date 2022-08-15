@@ -18,27 +18,28 @@ public class Bepto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String linea="";
-        String delimitante=";";
-        try{
-            String filePath="C:\\Users\\jaug1\\Downloads\\2S_FSJ.b2pFloorMapReport.txt";
+
+        String linea = "";
+        String delimitante = ";";
+        try {
+            String filePath = "C:\\Users\\jaug1\\Downloads\\2S_FSJ.b2pFloorMapReport.txt";
             FileReader fileReader = new FileReader(filePath);
-            BufferedReader reader= new BufferedReader(fileReader);
+            BufferedReader reader = new BufferedReader(fileReader);
             String[] campo;
-            
-            while((linea=reader.readLine())!=null){
-                if(linea.contains(delimitante)){
-                    campo=linea.split(delimitante);
-                    for(String data: campo){
-                    System.out.print(data+" ");
-                }
+
+            while ((linea = reader.readLine()) != null) {
+                if (linea.contains(delimitante)) {
+                    campo = linea.split(delimitante);
+                    for (String data : campo) {
+                        System.out.print(data + " ");
+                    }
                     System.out.println("");
                 }
-                
+
             }
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
 }
