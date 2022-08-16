@@ -24,27 +24,38 @@ public class Bepto {
         Path path = Paths.get("src/File/2S_FSJ.b2pFloorMapReport.txt");
         String linea = "";
         String delimitante = ";";
+        Rutas ruta = new Rutas();
+        String line = "****************************************************************";
         try {
             String filePath = path.toString();
             FileReader fileReader = new FileReader(filePath);
             BufferedReader reader = new BufferedReader(fileReader);
             String[] campo;
+            int band = 0;
+            int band1 = 0;
 
             while ((linea = reader.readLine()) != null) {
                 int a = 0;
-                if (linea.contains(delimitante)) {
+                if (linea.equals(line)) {
+                    if (band == 0) {
+                        band++;
+                    } else {
+                        break;
+                    }
+                } else if (linea.contains(delimitante)) {
+                    if(band1==0){
+                        band1=1;
+                        continue;
+                    }
                     campo = linea.split(delimitante);
                     for (String data : campo) {
-                        System.out.print(data + " ");
+                        System.out.print(data + " " + a + " ");
+                        a++;
                     }
                     System.out.println("");
                 } else if (linea.toLowerCase().contains("route")) {
                     campo = linea.split(" ");
-                    for (String data : campo) {
-                        a++;
-                        System.out.println(data + " " + a);
-                    }
-                    break;
+                    ruta.setId(Integer.parseInt(campo[4]));
                 }
 
             }

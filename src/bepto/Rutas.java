@@ -23,7 +23,11 @@ public class Rutas {
     private double AET;
     private Nodo[] nodos;
     //variable cumulative
-
+    
+    public Rutas(){
+        
+    }
+    
     public Rutas(int id, Arco[] arcos, String[] arcosNoUse, double tiempoSolution, String[] PNS, int[] TSN, int[] IMOU, int[] MS, double[] MSR, double UA, double ATPEEB, double AET, Nodo[] nodos) {
         this.id = id;
         this.arcos = arcos;
