@@ -9,6 +9,10 @@ public class List <T> {
         clean();
     }
 
+    public int getSize(){
+        return this.size;
+    }
+
     private void clean(){
         firstNode = null;
         size = 0;
@@ -87,7 +91,7 @@ public class List <T> {
         return true;
     }
 
-    public void imprimir(){
+    public void print(){
         if(!isEmpty()){
             Node<T> temp = firstNode;
             while(temp!=null){

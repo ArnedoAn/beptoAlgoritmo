@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import List.*;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Bepto {
         Path path = Paths.get("src/File/2S_FSJ.b2pFloorMapReport.txt");
         String linea = "";
         String delimitante = ";";
-        Rutas ruta = new Rutas();
+        List<Rutas> rutasList = new List<Rutas>();
         String line = "****************************************************************";
         try {
             String filePath = path.toString();
@@ -36,7 +37,7 @@ public class Bepto {
 
             while ((linea = reader.readLine()) != null) {
                 int a = 0;
-                if (linea.equals(line)) {
+                /*if (linea.equals(line)) {
                     if (band == 0) {
                         band++;
                     } else {
@@ -56,12 +57,21 @@ public class Bepto {
                 } else if (linea.toLowerCase().contains("route")) {
                     campo = linea.split(" ");
                     ruta.setId(Integer.parseInt(campo[4]));
+                }*/
+
+                if(linea.toLowerCase().contains("route")){
+                    campo = linea.split(" ");
+                    Rutas temp = new Rutas();
+                    temp.setId(Integer.parseInt(campo[4]));
+                    rutasList.add(new Node<Rutas>(temp));
                 }
 
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        rutasList.print();
+        System.out.println(rutasList.getSize());
     }
 
 }
