@@ -168,8 +168,7 @@ public class Bepto {
                     temp[1] = Double.parseDouble(campo[1]);
 
                     rutaTemp.setMSR(temp);
-                    break;
-                } else if (linea.contains(";")){
+                } else if (linea.contains(";")) {
 
                     /*if(linea.contains("Arc")){
                         linea = reader.readLine();
@@ -177,8 +176,13 @@ public class Bepto {
 
                     campo = linea.split(";");*/
 
-
-
+                } else if (linea.contains(line)) {
+                    if (band == 0) {
+                        band++;
+                    } else {
+                        rutasList.addEnd(new Node<>(rutaTemp));
+                        rutaTemp = new Rutas();
+                    }
                 }
 
             }
@@ -186,16 +190,13 @@ public class Bepto {
             e.printStackTrace();
         }
 
+        int cont = 0;
         rutasArray = rutasList.toArrayRutas();
         for (Rutas one : rutasArray) {
             System.out.println("Id de la ruta --> " + one.getId());
-
-            for (Arco two : one.getArco()) {
-                System.out.println(two.getId());
-            }
-
+            cont++;
         }
-
+        System.out.println(cont);
 
     }
 

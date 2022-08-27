@@ -48,12 +48,12 @@ public class Rutas {
         this.AET = AET;
     }
 
-    public void setPorcUtilizacionArcos(){
+    public void setPorcUtilizacionArcos() {
         int sizeArcos = getArco().length;
         int sizeArcosNoUsados = getArcoNoUse().length;
 
         double porcentaje;
-        porcentaje = (1 - (sizeArcosNoUsados/sizeArcos)) * 100;
+        porcentaje = (1 - (sizeArcosNoUsados / sizeArcos)) * 100;
 
         this.porcUtilizacionArcos = porcentaje;
 
