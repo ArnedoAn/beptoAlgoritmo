@@ -8,13 +8,13 @@ package bepto;
  * @author jaug1
  */
 public class Arco {
-    private String id;
+    private String id; // Identificador
     private double EAT;
     private double max;
-    private double emta;
+    private double emta; // %EvacueesMovingThroughArc
     private double BSI;
-    private double TTP;
-    private String[] TPM;
+    private double TTP; // TotalTimePeriod
+    private String[] TPM; // TimePeriodMoving
 
     public Arco(String id, double EAT, double max, double emta, double BSI, double TTP, String[] TPM) {
         this.id = id;

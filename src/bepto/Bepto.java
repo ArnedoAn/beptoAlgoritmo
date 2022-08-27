@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Iterator;
 
 import List.*;
 
@@ -38,13 +37,11 @@ public class Bepto {
 
             String[] campo;
 
-            Rutas rutaTemp;
+            Rutas rutaTemp = new Rutas();
             Arco arcoTemp;
             int band = 0;
 
             while ((linea = reader.readLine()) != null) {
-
-                rutaTemp = new Rutas();
 
                 if (linea.toLowerCase().contains("route")) { //Guardar Id de la ruta
 
@@ -71,10 +68,117 @@ public class Bepto {
                     linea = linea.replace("*  Unused Arcs ", "");
                     linea = linea.replace("[", "");
                     linea = linea.replace("]", "");
+                    linea = linea.replace(",", "");
 
-                    //System.out.println(linea);
-                    rutasList.add(new Node<>(rutaTemp));
+                    campo = linea.split(" ");
+                    for (String data : campo) {
+                        arcoTemp = new Arco();
+                        arcoTemp.setId(data);
+                        rutaTemp.addArcoNoUse(arcoTemp);
+                    }
+
+                } else if (linea.contains("Estimated evacuation time")) { // Guardar tiempo de evacuacion estimado
+
+                    linea = linea.replace("*  Estimated evacuation time ", "");
+                    linea = linea.replace(" units of time", "");
+                    linea = linea.replace(" ", "");
+
+                    rutaTemp.setEVT(Float.parseFloat(linea));
+
+                } else if (linea.contains("Evacuees not expossed")) { // Guardar evacuados no expuestos (?)
+
+                    linea = linea.replace("*  Evacuees not expossed", "");
+                    linea = linea.replace(" ", "");
+
+                    rutaTemp.setENE(Integer.parseInt(linea));
+
+                } else if (linea.contains("Solution found in")) { // Guardar tiempo de solucion
+
+                    linea = linea.replace("*  Solution found in :", "");
+                    linea = linea.replace("total CPU sec", "");
+                    linea = linea.replace(" ", "");
+
+                    rutaTemp.setTiempoSolution(Float.parseFloat(linea));
+
+                } else if (linea.contains("PNS File")) { // Guardar PNS File
+                    linea = reader.readLine();
+                    linea = linea.replace("*  Input File : =", "");
+                    linea = linea.replace("           Output File :=", "");
+
+                    campo = linea.split(" ");
+
+                    String[] temp = new String[2];
+                    temp[0] = campo[1] + "KB";
+                    temp[1] = campo[4] + "KB";
+
+                    rutaTemp.setPNS(temp);
+
+                } else if (linea.contains("Total Size of the Network")) { // Guardar Total Size of the Network
+
+                    linea = reader.readLine();
+                    linea = linea.replace("*  Material(s) : = ", "");
+                    linea = linea.replace("           Operating Unit(s) := ", "");
+
+                    campo = linea.split(" ");
+
+                    int[] temp = new int[2];
+                    temp[0] = Integer.parseInt(campo[0]);
+                    temp[1] = Integer.parseInt(campo[1]);
+
+                    rutaTemp.setTSN(temp);
+
+                } else if (linea.contains("Inessential Material(s) & Operating Unit(s)")) { // Guardar Inessential Material(s) & Operating Unit(s)
+
+                    linea = reader.readLine();
+                    linea = linea.replace("*  Material(s) : = ", "");
+                    linea = linea.replace("           Operating Unit(s) := ", "");
+                    campo = linea.split(" ");
+
+                    int[] temp = new int[2];
+                    temp[0] = Integer.parseInt(campo[0]);
+                    temp[1] = Integer.parseInt(campo[1]);
+
+                    rutaTemp.setIMOU(temp);
+
+                } else if (linea.contains("Maximal Structure ") && !linea.contains("% Reduction")) { // Guardar Maximal Structure
+
+                    linea = reader.readLine();
+                    linea = linea.replace("*  Material(s) : = ", "");
+                    linea = linea.replace("           Operating Unit(s) := ", "");
+                    campo = linea.split(" ");
+
+                    int[] temp = new int[2];
+                    temp[0] = Integer.parseInt(campo[0]);
+                    temp[1] = Integer.parseInt(campo[1]);
+
+                    rutaTemp.setMS(temp);
+
+                } else if (linea.contains("Maximal Structure % Reduction ")) { // Guardar Maximal Structure % Reduction
+
+                    linea = reader.readLine();
+                    linea = linea.replace("*  Material(s) : = ", "");
+                    linea = linea.replace("         Operating Unit(s) :=", "");
+                    linea = linea.replace("%", "");
+                    linea = linea.replace(",", ".");
+
+                    campo = linea.split(" ");
+
+                    double[] temp = new double[2];
+                    temp[0] = Double.parseDouble(campo[0]);
+                    temp[1] = Double.parseDouble(campo[1]);
+
+                    rutaTemp.setMSR(temp);
                     break;
+                } else if (linea.contains(";")){
+
+                    /*if(linea.contains("Arc")){
+                        linea = reader.readLine();
+                    }
+
+                    campo = linea.split(";");*/
+
+
+
                 }
 
             }

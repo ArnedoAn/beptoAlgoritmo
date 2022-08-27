@@ -10,28 +10,33 @@ import List.*;
  * @author jaug1
  */
 public class Rutas {
-    private int id;
-    private List<Arco> arcos = new List<Arco>();
-    private String[] arcosNoUse;
-    private double tiempoSolution;
-    private String[] PNS;
-    private int[] TSN;
-    private int[] IMOU;
-    private int[] MS;
-    private double[] MSR;
-    private double UA; // utilizacion de arcos
-    private double ATPEEB;
-    private double AET;
-    private Nodo[] nodos;
-    //variable cumulative
+    private int id; // Identificador
+    private List<Arco> arcos = new List<Arco>(); // Conjunto de arcos
+    private List<Arco> arcosNoUse = new List<Arco>(); // Conjuntos de arcos no usados
+    private double EVT; // Estimated evacuation time
+    private int ENE; // Evacuees not expossed
+    private double tiempoSolution; // Tiempo en que se encontro la solucion
+    private String[] PNS; // PNS File
+    private int[] TSN; // Total Size of the Network
+    private int[] IMOU; // Inessential Material(s) & Operating Unit(s) (0 - Material), (1 - OU)
+    private int[] MS; // Maximal Structure (0 - Material), (1 - OU)
+    private double[] MSR; // Maximal Structure % Reduction (0 - Material), (1 - OU)
+    private double UA; // Utilizacion de arcos
+    private double ATPEEB; // Average Time Periods for Evacuees to Evacuate Building
+    private double AET; // AverageEvacueesperTimePeriod
+    private List<Nodo> Nodos = new List<Nodo>(); // Nodes
+
+    private List<String[]> cummulative = new List<String[]>(); // Cummulative
+
+    private double porcUtilizacionArcos;
+
 
     public Rutas() {
 
     }
 
-    public Rutas(int id, String[] arcosNoUse, double tiempoSolution, String[] PNS, int[] TSN, int[] IMOU, int[] MS, double[] MSR, double UA, double ATPEEB, double AET, Nodo[] nodos) {
+    public Rutas(int id, double tiempoSolution, String[] PNS, int[] TSN, int[] IMOU, int[] MS, double[] MSR, double UA, double ATPEEB, double AET, Nodo[] nodos) {
         this.id = id;
-        this.arcosNoUse = arcosNoUse;
         this.tiempoSolution = tiempoSolution;
         this.PNS = PNS;
         this.TSN = TSN;
@@ -41,14 +46,48 @@ public class Rutas {
         this.UA = UA;
         this.ATPEEB = ATPEEB;
         this.AET = AET;
-        this.nodos = nodos;
+    }
+
+    public void setPorcUtilizacionArcos(){
+        int sizeArcos = getArco().length;
+        int sizeArcosNoUsados = getArcoNoUse().length;
+
+        double porcentaje;
+        porcentaje = (1 - (sizeArcosNoUsados/sizeArcos)) * 100;
+
+        this.porcUtilizacionArcos = porcentaje;
+
+    }
+
+    public int getENE() {
+        return ENE;
+    }
+
+    public void setENE(int ENE) {
+        this.ENE = ENE;
+    }
+
+    public void addArcoNoUse(Arco tempoArco) {
+        this.arcosNoUse.addEnd(new Node<Arco>(tempoArco));
+    }
+
+    public Arco[] getArcoNoUse() {
+        return this.arcosNoUse.toArrayArco();
+    }
+
+    public void addNodo(Nodo tempNodo) {
+        this.Nodos.addEnd(new Node<Nodo>(tempNodo));
+    }
+
+    public Nodo[] getNod() {
+        return this.Nodos.toArrayNodo();
     }
 
     public void addArco(Arco tempArco) {
         this.arcos.addEnd(new Node<>(tempArco));
     }
 
-    public Arco[] getArco(){
+    public Arco[] getArco() {
         return this.arcos.toArrayArco();
     }
 
@@ -58,14 +97,6 @@ public class Rutas {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String[] getArcosNoUse() {
-        return arcosNoUse;
-    }
-
-    public void setArcosNoUse(String[] arcosNoUse) {
-        this.arcosNoUse = arcosNoUse;
     }
 
     public double getTiempoSolution() {
@@ -140,12 +171,15 @@ public class Rutas {
         this.AET = AET;
     }
 
-    public Nodo[] getNodos() {
-        return nodos;
+    public void setEVT(double EVT) {
+        this.EVT = EVT;
     }
 
-    public void setNodos(Nodo[] nodos) {
-        this.nodos = nodos;
+    public double getEVT() {
+        return this.EVT;
     }
-
 }
+
+
+
+
