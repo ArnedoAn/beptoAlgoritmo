@@ -19,6 +19,8 @@ public class Nodo {
         this.promTiempo = promTiempo;
     }
 
+    public Nodo(){}
+
     public String getId() {
         return id;
     }

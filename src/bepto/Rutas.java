@@ -4,13 +4,14 @@
  */
 package bepto;
 
+import List.*;
+
 /**
- *
  * @author jaug1
  */
 public class Rutas {
     private int id;
-    private Arco[] arcos;
+    private List<Arco> arcos = new List<Arco>();
     private String[] arcosNoUse;
     private double tiempoSolution;
     private String[] PNS;
@@ -23,14 +24,13 @@ public class Rutas {
     private double AET;
     private Nodo[] nodos;
     //variable cumulative
-    
-    public Rutas(){
-        
+
+    public Rutas() {
+
     }
-    
-    public Rutas(int id, Arco[] arcos, String[] arcosNoUse, double tiempoSolution, String[] PNS, int[] TSN, int[] IMOU, int[] MS, double[] MSR, double UA, double ATPEEB, double AET, Nodo[] nodos) {
+
+    public Rutas(int id, String[] arcosNoUse, double tiempoSolution, String[] PNS, int[] TSN, int[] IMOU, int[] MS, double[] MSR, double UA, double ATPEEB, double AET, Nodo[] nodos) {
         this.id = id;
-        this.arcos = arcos;
         this.arcosNoUse = arcosNoUse;
         this.tiempoSolution = tiempoSolution;
         this.PNS = PNS;
@@ -44,20 +44,20 @@ public class Rutas {
         this.nodos = nodos;
     }
 
+    public void addArco(Arco tempArco) {
+        this.arcos.addEnd(new Node<>(tempArco));
+    }
+
+    public Arco[] getArco(){
+        return this.arcos.toArrayArco();
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Arco[] getArcos() {
-        return arcos;
-    }
-
-    public void setArcos(Arco[] arcos) {
-        this.arcos = arcos;
     }
 
     public String[] getArcosNoUse() {
@@ -147,5 +147,5 @@ public class Rutas {
     public void setNodos(Nodo[] nodos) {
         this.nodos = nodos;
     }
-    
+
 }

@@ -5,7 +5,6 @@
 package bepto;
 
 /**
- *
  * @author jaug1
  */
 public class Arco {
@@ -25,6 +24,9 @@ public class Arco {
         this.BSI = BSI;
         this.TTP = TTP;
         this.TPM = TPM;
+    }
+
+    public Arco() {
     }
 
     public String getId() {
@@ -87,6 +89,6 @@ public class Arco {
     public String toString() {
         return "Arco{" + "id=" + id + ", EAT=" + EAT + ", max=" + max + ", emta=" + emta + ", BSI=" + BSI + ", TTP=" + TTP + ", TPM=" + TPM + '}';
     }
-    
-    
+
+
 }
