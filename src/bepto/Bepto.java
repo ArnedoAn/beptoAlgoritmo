@@ -25,7 +25,6 @@ public class Bepto {
         Rutas[] rutasArray;
         Path path = Paths.get("src/File/2S_FSJ.b2pFloorMapReport.txt");
         String linea = "";
-        String delimitante = ";";
         List<Rutas> rutasList = new List<Rutas>();
         String line = "****************************************************************";
 
@@ -39,6 +38,7 @@ public class Bepto {
 
             Rutas rutaTemp = new Rutas();
             Arco arcoTemp;
+            Nodo nodoTemp;
             int band = 0;
 
             while ((linea = reader.readLine()) != null) {
@@ -168,15 +168,71 @@ public class Bepto {
                     temp[1] = Double.parseDouble(campo[1]);
 
                     rutaTemp.setMSR(temp);
-                } else if (linea.contains(";")) {
+                } else if (linea.contains(";")) { // Guardar movimientos de arcos
 
-                    /*if(linea.contains("Arc")){
+                    if (linea.contains("Arc")) {
                         linea = reader.readLine();
                     }
 
-                    campo = linea.split(";");*/
+                    campo = linea.split(";");
 
-                } else if (linea.contains(line)) {
+                    arcoTemp = new Arco();
+
+                    arcoTemp.setEAT(Double.parseDouble(campo[1]));
+                    arcoTemp.setMax(Double.parseDouble(campo[2]));
+                    arcoTemp.setEmta(Double.parseDouble(campo[3]));
+                    arcoTemp.setBSI(Double.parseDouble(campo[4]));
+                    arcoTemp.setTTP(Double.parseDouble(campo[5]));
+
+                    int n = campo.length - 6;
+                    String[] TPM = new String[n];
+                    for (int i = 0; i < n; i++) {
+                        TPM[i] = campo[6 + i];
+                    }
+
+                    arcoTemp.setTPM(TPM);
+
+                } else if (linea.contains("Arc Utilization")) { // Guardar Arc Utilization
+
+                    linea = linea.replace("Arc Utilization ", "");
+                    rutaTemp.setUA(Double.parseDouble(linea));
+
+                } else if (linea.contains("Average Time Periods for Evacuees to Evacuate Building")) { // Guardar Average Time Periods for Evacuees to Evacuate Building
+
+                    linea = linea.replace("Average Time Periods for Evacuees to Evacuate Building ", "");
+                    rutaTemp.setATPEEB(Double.parseDouble(linea));
+
+                } else if (linea.contains("AverageEvacueesperTimePeriod")) { // Guardar AverageEvacueesperTimePeriod
+
+                    linea = linea.replace("AverageEvacueesperTimePeriod ", "");
+                    rutaTemp.setAET(Double.parseDouble(linea));
+
+                } else if (linea.contains("Cummulative")) { // Guardar Cummulatives
+
+                    linea = linea.replace("Cummulative ", "");
+                    linea = linea.replace("%", "");
+
+                    campo = linea.split(" ");
+
+                    rutaTemp.addCummulative(campo);
+
+                } else if (linea.contains("Node Clearence Time")) { // Guardar nodos
+
+                    nodoTemp = new Nodo();
+                    linea = linea.replace("Node Clearence Time ", "");
+                    campo = linea.split(" ");
+                    nodoTemp.setId(campo[0]);
+                    nodoTemp.setPromTiempo(Double.parseDouble(campo[1]));
+
+                    linea = reader.readLine();
+
+                    linea = linea.replace("Average Evacuess Waiting per Time Period ", "");
+                    campo = linea.split(" ");
+                    nodoTemp.setTiempoVacio(Double.parseDouble(campo[1]));
+
+                    rutaTemp.addNodo(nodoTemp);
+
+                } else if (linea.contains(line)) { // Guardar Ruta con todos los atributos asigandos {No guarda la ultima ruta}
                     if (band == 0) {
                         band++;
                     } else {
