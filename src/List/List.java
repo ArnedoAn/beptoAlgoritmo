@@ -149,26 +149,19 @@ public class List<T> {
     }
 
 
-    public int binarySearc(int key) {
-        Rutas[] listArray = toArrayRutas();
-        if (listArray != null) {
-            int first = 0;
-            int last = this.size - 1;
-            while (first <= last) {
-                int mid = first + (last - first) / 2;
-                if (listArray[mid].getId() == key) {
-                    return mid;
-                }
-                if (listArray[mid].getId() < key) {
-                    first = mid + 1;
-                } else {
-                    last = mid - 1;
-                }
+    public String[] toArrayString(){
+        String[] listArray = new String[this.size];
+        if (!isEmpty()) {
+            Node<T> temp = firstNode;
+            int band = 0;
+            while (temp != null) {
+                listArray[band] = (String) temp.getData();
+                temp = temp.next;
+                band++;
             }
-            return -1; //Index not found
-        } else {
-            return -2; //Array empty
         }
+        return listArray;
     }
+    
 }
 

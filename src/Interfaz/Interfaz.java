@@ -14,7 +14,7 @@ import bepto.Rutas;
 public class Interfaz extends javax.swing.JFrame {
 
     /**
-     * Creates new form Interfazz
+     * Creates new form Interfaz
      */
     public Interfaz() {
         initComponents();

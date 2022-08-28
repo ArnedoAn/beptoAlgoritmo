@@ -26,7 +26,7 @@ public class Rutas {
     private double AET; // AverageEvacueesperTimePeriod
     private List<Nodo> Nodos = new List<Nodo>(); // Nodes
 
-    private List<String[]> cummulative = new List<String[]>(); // Cummulative
+    private List<String> cummulative = new List<String>(); // Cummulative
 
     public Rutas() {
 
@@ -44,14 +44,15 @@ public class Rutas {
         this.ATPEEB = ATPEEB;
         this.AET = AET;
     }
-
+    
+    
     
     public void setArcos(Arco arco, int index) {
         this.getArco()[index] = arco;
     }
     
-    public void addCummulative(String [] cadena){
-        this.cummulative.addEnd(new Node<String[]>(cadena));
+    public void addCummulative(String cadena){
+        this.cummulative.addEnd(new Node<String>(cadena));
     }
     public int getENE() {
         return ENE;
@@ -171,6 +172,10 @@ public class Rutas {
 
     public double getEVT() {
         return this.EVT;
+    }
+
+    public String[] getCummulative() {
+        return cummulative.toArrayString();
     }
 }
 
