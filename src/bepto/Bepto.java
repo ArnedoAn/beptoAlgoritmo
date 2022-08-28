@@ -208,9 +208,9 @@ public class Bepto {
         opc = Integer.parseInt(JOptionPane.showInputDialog("--------------------MENÚ-----------------"
                 + "\n1. Desplegar informacion de las rutas."
                 + "\n2. Ordenar por porcentaje de arcos no usados (menor a mejor)"
-                + "\n3. Ordenar por tiempo estimado. "
-                + "\n4. Ordenar por Materiales. "
-                + "\n5. Ordenar por unidades operativas "
+                + "\n3. Ordenar por Materiales."
+                + "\n4. Ordenar por unidades operativas."
+                + "\n5. Ordenar por tiempo estimado."
                 + "\n6. salir. "));
         switch(opc){
             case 1: for(Rutas one: rutasArray){
@@ -229,21 +229,18 @@ public class Bepto {
                         +"\n---------------------------------------------------------------------------------------------");
             } break; 
             case 2: break;
-            case 3: HeapSort ob = new HeapSort();
-                    ob.sort(rutasArray);
-                    printArray(rutasArray); break;
-            case 4: HeapSortM obj = new HeapSortM();
+            case 3: HeapSortM obj = new HeapSortM();
                     obj.sort(rutasArray);
                     printArray1(rutasArray); break;
-            case 5: HeapSortU objt = new HeapSortU();
+            case 4: HeapSortU objt = new HeapSortU();
                     objt.sort(rutasArray);
                     printArray2(rutasArray); break;
+            case 5: HeapSort ob = new HeapSort();
+                    ob.sort(rutasArray);
+                    printArray(rutasArray); break;
             case 6: break;
         }
         }while(opc<0 || opc>6);
-               
-        
-        
     }
 
 }
