@@ -59,6 +59,10 @@ public class Rutas {
 
     }
 
+
+    public void addCummulative(String [] cadena){
+        this.cummulative.addEnd(new Node<String[]>(cadena));
+    }
     public int getENE() {
         return ENE;
     }
