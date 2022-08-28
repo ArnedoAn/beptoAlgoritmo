@@ -11,9 +11,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import List.*;
+
 import static bepto.HeapSort.printArray;
 import static bepto.HeapSortM.printArray1;
 import static bepto.HeapSortU.printArray2;
+
 import java.io.ObjectInputStream;
 import javax.swing.JOptionPane;
 
@@ -45,7 +47,7 @@ public class Bepto {
             Arco arcoTemp;
             Nodo nodoTemp;
             int band = 0;
-            
+
 
             while ((linea = reader.readLine()) != null) {
 
@@ -90,7 +92,7 @@ public class Bepto {
                     linea = linea.replace(" ", "");
 
                     rutaTemp.setEVT(Float.parseFloat(linea));
-                    
+
                 } else if (linea.contains("Evacuees not expossed")) { // Guardar evacuados no expuestos (?)
 
                     linea = linea.replace("*  Evacuees not expossed", "");
@@ -174,21 +176,19 @@ public class Bepto {
                     temp[1] = Double.parseDouble(campo[1]);
 
                     rutaTemp.setMSR(temp);
-<<<<<<< HEAD
+
                 } else if (linea.contains("Average Time Periods for Evacuees to Evacuate Building ")) {
-                    linea= linea.replace("Average Time Periods for Evacuees to Evacuate Building ", "");
+                    linea = linea.replace("Average Time Periods for Evacuees to Evacuate Building ", "");
                     rutaTemp.setATPEEB(Double.parseDouble(linea));
-                    
-                }else if(linea.contains("Arc Utilization ")){
+
+                } else if (linea.contains("Arc Utilization ")) {
                     linea = linea.replace("Arc Utilization ", "");
                     rutaTemp.setUA(Double.parseDouble(linea));
-                    
-                }else if(linea.contains("AverageEvacueesperTimePeriod ")){
+
+                } else if (linea.contains("AverageEvacueesperTimePeriod ")) {
                     linea = linea.replace("AverageEvacueesperTimePeriod ", "");
                     rutaTemp.setAET(Double.parseDouble(linea));
-                    
-                }else if (linea.contains(line)) {
-=======
+
                 } else if (linea.contains(";")) { // Guardar movimientos de arcos
 
                     if (linea.contains("Arc")) {
@@ -254,7 +254,7 @@ public class Bepto {
                     rutaTemp.addNodo(nodoTemp);
 
                 } else if (linea.contains(line)) { // Guardar Ruta con todos los atributos asigandos {No guarda la ultima ruta}
->>>>>>> extra
+
                     if (band == 0) {
                         band++;
                     } else {
@@ -268,47 +268,57 @@ public class Bepto {
         }
 
         rutasArray = rutasList.toArrayRutas();
-        for(Rutas one: rutasArray){
+        for (Rutas one : rutasArray) {
             System.out.println("");
         }
         int opc;
-        do{
-        opc = Integer.parseInt(JOptionPane.showInputDialog("--------------------MENÚ-----------------"
-                + "\n1. Desplegar informacion de las rutas."
-                + "\n2. Ordenar por porcentaje de arcos no usados (menor a mejor)"
-                + "\n3. Ordenar por Materiales."
-                + "\n4. Ordenar por unidades operativas."
-                + "\n5. Ordenar por tiempo estimado."
-                + "\n6. salir. "));
-        switch(opc){
-            case 1: for(Rutas one: rutasArray){
-                System.out.println("id --> "+one.getId()
-                        +"\nTiempo estimado de evacuacion --> "+one.getEVT()
-                        +"\nEvacuados no expuestos --> "+one.getENE()
-                        +"\nTiempo en que se encontro la solucion --> "+one.getTiempoSolution()
-                        +"\nPNS file --> "+one.getPNS()[0]+" & "+one.getPNS()[1]
-                        +"\nTotal size of the network --> "+one.getTSN()[0]+" & "+one.getTSN()[1]
-                        +"\nInessential Material(s) & Operating Unit(s) --> "+one.getIMOU()[0]+" & "+one.getIMOU()[1]
-                        +"\nMaximal structure --> "+one.getMS()[0]+" & "+one.getMS()[1]
-                        +"\nMaximal Structure % Reduction --> "+one.getMSR()[0]+"%"+" & "+one.getMSR()[1]+"%"
-                        +"\nUtilizacion de arcos --> "+one.getUA()
-                        +"\nAverage Time Periods for Evacuees to Evacuate Building -->"+one.getATPEEB()
-                        +"\nAverageEvacueesperTimePeriod -->"+one.getAET()
-                        +"\n---------------------------------------------------------------------------------------------");
-            } break; 
-            case 2: break;
-            case 3: HeapSortM obj = new HeapSortM();
+        do {
+            opc = Integer.parseInt(JOptionPane.showInputDialog("--------------------MENÚ-----------------"
+                    + "\n1. Desplegar informacion de las rutas."
+                    + "\n2. Ordenar por porcentaje de arcos no usados (menor a mejor)"
+                    + "\n3. Ordenar por Materiales."
+                    + "\n4. Ordenar por unidades operativas."
+                    + "\n5. Ordenar por tiempo estimado."
+                    + "\n6. salir. "));
+            switch (opc) {
+                case 1:
+                    for (Rutas one : rutasArray) {
+                        System.out.println("id --> " + one.getId()
+                                + "\nTiempo estimado de evacuacion --> " + one.getEVT()
+                                + "\nEvacuados no expuestos --> " + one.getENE()
+                                + "\nTiempo en que se encontro la solucion --> " + one.getTiempoSolution()
+                                + "\nPNS file --> " + one.getPNS()[0] + " & " + one.getPNS()[1]
+                                + "\nTotal size of the network --> " + one.getTSN()[0] + " & " + one.getTSN()[1]
+                                + "\nInessential Material(s) & Operating Unit(s) --> " + one.getIMOU()[0] + " & " + one.getIMOU()[1]
+                                + "\nMaximal structure --> " + one.getMS()[0] + " & " + one.getMS()[1]
+                                + "\nMaximal Structure % Reduction --> " + one.getMSR()[0] + "%" + " & " + one.getMSR()[1] + "%"
+                                + "\nUtilizacion de arcos --> " + one.getUA()
+                                + "\nAverage Time Periods for Evacuees to Evacuate Building -->" + one.getATPEEB()
+                                + "\nAverageEvacueesperTimePeriod -->" + one.getAET()
+                                + "\n---------------------------------------------------------------------------------------------");
+                    }
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    HeapSortM obj = new HeapSortM();
                     obj.sort(rutasArray);
-                    printArray1(rutasArray); break;
-            case 4: HeapSortU objt = new HeapSortU();
+                    printArray1(rutasArray);
+                    break;
+                case 4:
+                    HeapSortU objt = new HeapSortU();
                     objt.sort(rutasArray);
-                    printArray2(rutasArray); break;
-            case 5: HeapSort ob = new HeapSort();
+                    printArray2(rutasArray);
+                    break;
+                case 5:
+                    HeapSort ob = new HeapSort();
                     ob.sort(rutasArray);
-                    printArray(rutasArray); break;
-            case 6: break;
-        }
-        }while(opc<0 || opc>6);
+                    printArray(rutasArray);
+                    break;
+                case 6:
+                    break;
+            }
+        } while (opc < 0 || opc > 6);
     }
 
 }
