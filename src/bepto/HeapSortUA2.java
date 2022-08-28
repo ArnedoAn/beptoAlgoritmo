@@ -6,10 +6,9 @@ package bepto;
 
 /**
  *
- * @author Jose
+ * @author jaug1
  */
-public class HeapSort {
-    
+public class HeapSortUA2 {
     public void sort(Rutas arr[])
     {
         int N = arr.length;
@@ -34,10 +33,10 @@ public class HeapSort {
         int l = 2 * i + 1;
         int r = 2 * i + 2;
        
-        if (l < N && arr[l].getEVT() > arr[largest].getEVT())  // EVT
+        if (l < N && arr[l].getUA() < arr[largest].getUA())  // EVT
             largest = l;
  
-        if (r < N && arr[r].getEVT() > arr[largest].getEVT())  // EVT
+        if (r < N && arr[r].getUA() < arr[largest].getUA())  // EVT
             largest = r;
  
         if (largest != i) {
@@ -48,13 +47,13 @@ public class HeapSort {
             heapify(arr, N, largest);
         }
     }
-public static void printArray(Rutas arr[]){
+public static void printArray4(Rutas arr[]){
         
         int N = arr.length;
  
         for (int i = 0; i < N; ++i)
             System.out.println("id --> "+arr[i].getId()
-                    +"\nTiempo de estimado de evacuacion --> "+arr[i].getEVT()+"\n--------------------------------------------");  
+                    +"\nPorcentaje utilizacion de arcos Mayor a menor --> "+arr[i].getUA()+"%"+"\n----------------------------------------------------------");  
         
-    }    
+    }
 }

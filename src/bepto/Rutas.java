@@ -28,9 +28,6 @@ public class Rutas {
 
     private List<String[]> cummulative = new List<String[]>(); // Cummulative
 
-    private double porcUtilizacionArcos;
-
-
     public Rutas() {
 
     }
@@ -48,18 +45,11 @@ public class Rutas {
         this.AET = AET;
     }
 
-    public void setPorcUtilizacionArcos() {
-        int sizeArcos = getArco().length;
-        int sizeArcosNoUsados = getArcoNoUse().length;
-
-        double porcentaje;
-        porcentaje = (1 - (sizeArcosNoUsados / sizeArcos)) * 100;
-
-        this.porcUtilizacionArcos = porcentaje;
-
+    
+    public void setArcos(Arco arco, int index) {
+        this.getArco()[index] = arco;
     }
-
-
+    
     public void addCummulative(String [] cadena){
         this.cummulative.addEnd(new Node<String[]>(cadena));
     }

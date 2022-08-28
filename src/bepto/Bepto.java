@@ -9,12 +9,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import List.*;
-
+import java.text.DecimalFormat;
 import static bepto.HeapSort.printArray;
 import static bepto.HeapSortM.printArray1;
 import static bepto.HeapSortU.printArray2;
+import static bepto.HeapSortUA.printArray3;
+import static bepto.HeapSortUA2.printArray4;
 
 import java.io.ObjectInputStream;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ public class Bepto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        DecimalFormat dc=new DecimalFormat("#.00");
         Rutas[] rutasArray;
         Path path = Paths.get("src/File/2S_FSJ.b2pFloorMapReport.txt");
         String linea = "";
@@ -194,10 +195,20 @@ public class Bepto {
                     if (linea.contains("Arc")) {
                         linea = reader.readLine();
                     }
-
-                    campo = linea.split(";");
-
                     arcoTemp = new Arco();
+                    campo = linea.split(";");
+                    int index = 0;
+
+                    int x = 0;
+                    while (x < rutaTemp.getArco().length) {
+                        if (rutaTemp.getArco()[x].getId().equals(campo[0])) {
+                            index = x;
+                            break;
+                        }
+                        x++;
+                    }
+
+                    arcoTemp = rutaTemp.getArco()[index];
 
                     arcoTemp.setEAT(Double.parseDouble(campo[1]));
                     arcoTemp.setMax(Double.parseDouble(campo[2]));
@@ -212,6 +223,8 @@ public class Bepto {
                     }
 
                     arcoTemp.setTPM(TPM);
+
+                    rutaTemp.setArcos(arcoTemp, index);
 
                 } else if (linea.contains("Arc Utilization")) { // Guardar Arc Utilization
 
@@ -276,13 +289,18 @@ public class Bepto {
             opc = Integer.parseInt(JOptionPane.showInputDialog("--------------------MENÚ-----------------"
                     + "\n1. Desplegar informacion de las rutas."
                     + "\n2. Ordenar por porcentaje de arcos no usados (menor a mejor)"
-                    + "\n3. Ordenar por Materiales."
-                    + "\n4. Ordenar por unidades operativas."
-                    + "\n5. Ordenar por tiempo estimado."
-                    + "\n6. salir. "));
+                    + "\n3. Ordenar por porcentaje de arcos no usados (mejor a menor)"
+                    + "\n4. Ordenar por Materiales."
+                    + "\n5. Ordenar por unidades operativas."
+                    + "\n6. Ordenar por tiempo estimado de evacuacion."
+                    + "\n7. salir. "));
             switch (opc) {
                 case 1:
+                    
                     for (Rutas one : rutasArray) {
+                        for(Arco two: one.getArco()){
+                            System.out.println(two.getId()+two.getMax());
+                        }
                         System.out.println("id --> " + one.getId()
                                 + "\nTiempo estimado de evacuacion --> " + one.getEVT()
                                 + "\nEvacuados no expuestos --> " + one.getENE()
@@ -292,33 +310,44 @@ public class Bepto {
                                 + "\nInessential Material(s) & Operating Unit(s) --> " + one.getIMOU()[0] + " & " + one.getIMOU()[1]
                                 + "\nMaximal structure --> " + one.getMS()[0] + " & " + one.getMS()[1]
                                 + "\nMaximal Structure % Reduction --> " + one.getMSR()[0] + "%" + " & " + one.getMSR()[1] + "%"
-                                + "\nUtilizacion de arcos --> " + one.getUA()
+                                + "\nUtilizacion de arcos --> " + String.format("% .2f", one.getUA())
                                 + "\nAverage Time Periods for Evacuees to Evacuate Building -->" + one.getATPEEB()
                                 + "\nAverageEvacueesperTimePeriod -->" + one.getAET()
+                                +"\nArcos --> "
                                 + "\n---------------------------------------------------------------------------------------------");
                     }
                     break;
                 case 2:
+                    HeapSortUA objUA = new HeapSortUA();
+                    objUA.sort(rutasArray);
+                    printArray3(rutasArray);
                     break;
                 case 3:
+                    HeapSortUA2 objUAa = new HeapSortUA2();
+                    objUAa.sort(rutasArray);
+                    printArray4(rutasArray);
+                    
+                    break;
+                case 4:
                     HeapSortM obj = new HeapSortM();
                     obj.sort(rutasArray);
                     printArray1(rutasArray);
+                    
                     break;
-                case 4:
+                case 5:
                     HeapSortU objt = new HeapSortU();
                     objt.sort(rutasArray);
                     printArray2(rutasArray);
+                    
                     break;
-                case 5:
+                case 6:
                     HeapSort ob = new HeapSort();
                     ob.sort(rutasArray);
                     printArray(rutasArray);
                     break;
-                case 6:
-                    break;
+                case 7:break;
             }
-        } while (opc < 0 || opc > 6);
+        } while (opc!=7);
     }
 
 }

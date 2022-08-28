@@ -52,8 +52,8 @@ public static void printArray2(Rutas arr[]){
         int N = arr.length;
  
         for (int i = 0; i < N; ++i)
-            System.out.println("\nid --> "+arr[i].getId()
-                    +"\nUnidades operativas  --> "+arr[i].getMSR()[1]+"%");  
+            System.out.println("id --> "+arr[i].getId()
+                    +"\nUnidades operativas  --> "+arr[i].getMSR()[1]+"%"+"\n----------------------------------------------");  
         
     }    
 }
