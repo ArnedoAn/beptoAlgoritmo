@@ -22,7 +22,7 @@ public class Bepto {
     }
 
     public Bepto() {
-        
+
     }
 
     public Rutas[] leer(String file) {
@@ -191,7 +191,7 @@ public class Bepto {
                     }
                     arcoTemp = new Arco();
                     campo = linea.split(";");
-                    
+
                     arcoTemp.setId(campo[0]);
                     arcoTemp.setEAT(Double.parseDouble(campo[1]));
                     arcoTemp.setMax(Double.parseDouble(campo[2]));
@@ -353,7 +353,7 @@ public class Bepto {
 
     }
 
-    public void printRutaId(int id) {
+    public Rutas printRutaId(int id) {
         Rutas[] rutasArray = rutasList.toArrayRutas();
 
         int index = 0;
@@ -368,48 +368,10 @@ public class Bepto {
 
         Rutas ruta = rutasArray[index];
 
-        System.out.println("id --> " + ruta.getId()
-                + "\nTiempo estimado de evacuacion --> " + ruta.getEVT()
-                + "\nEvacuados no expuestos --> " + ruta.getENE()
-                + "\nTiempo en que se encontro la solucion --> " + ruta.getTiempoSolution()
-                + "\nPNS file --> " + ruta.getPNS()[0] + " & " + ruta.getPNS()[1]
-                + "\nTotal size of the network --> " + ruta.getTSN()[0] + " & " + ruta.getTSN()[1]
-                + "\nInessential Material(s) & Operating Unit(s) --> " + ruta.getIMOU()[0] + " & " + ruta.getIMOU()[1]
-                + "\nMaximal structure --> " + ruta.getMS()[0] + " & " + ruta.getMS()[1]
-                + "\nMaximal Structure % Reduction --> " + ruta.getMSR()[0] + "%" + " & " + ruta.getMSR()[1] + "%"
-                + "\nUtilizacion de arcos --> " + String.format("% .2f", ruta.getUA())
-                + "\nAverage Time Periods for Evacuees to Evacuate Building -->" + ruta.getATPEEB()
-                + "\nAverageEvacueesperTimePeriod -->" + ruta.getAET()
-                + "\nArcos --> ");
-        for (Arco data : ruta.getArco()) {
-            System.out.print(data.getId() + " ");
-        }
-
-        System.out.println("Arcos no usados --> ");
-        for (Arco data : ruta.getArcoNoUse()) {
-            System.out.print(data.getId() + " ");
-        }
-
-        System.out.println("Movimiento de los arcos");
-        for (Arco data : ruta.getArco()) {
-            System.out.println(data.getId() + ";" + data.getEAT()
-                    + ";" + data.getMax() + ";" + data.getEmta() + ";" + data.getBSI()
-                    + ";" + data.getTTP());
-            for (String one : data.getTPM()) {
-                System.out.print(";" + one);
-            }
-        }
-
-        String[] cummulative = ruta.getCummulative();
-        for (String data : cummulative) {
-            System.out.println("Cummulative " + data + "%");
-        }
-
-        System.out.println("Nodes");
-        Nodo[] nodos = ruta.getNod();
-        for (Nodo nodo : nodos) {
-            System.out.println("Node Clearence Time " + nodo.getId() + " " + nodo.getTiempoVacio());
-            System.out.println("Average Evacuess Waiting per Time Period " + nodo.getId() + " " + nodo.getPromTiempo());
+        if (ruta != null) {
+            return ruta;
+        } else {
+            return null;
         }
 
     }

@@ -11,6 +11,7 @@ import bepto.Rutas;
 import java.io.File;
 import java.text.DecimalFormat;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,6 +59,11 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         txaorden6 = new javax.swing.JTextArea();
         escogerArchivo = new javax.swing.JButton();
+        id = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        buscar = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        busquedaId = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,43 +151,68 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        id.setText("Ingrese id");
+
+        jLabel2.setText("Busqueda de ruta por id");
+
+        buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+
+        busquedaId.setColumns(20);
+        busquedaId.setRows(5);
+        jScrollPane7.setViewportView(busquedaId);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(OrdRutMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1745, 1745, 1745))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(escogerArchivo)
                 .addGap(391, 391, 391)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(OrdRutMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buscar)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +243,16 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                     .addComponent(jScrollPane6)
                     .addComponent(jScrollPane2))
-                .addGap(197, 197, 197))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(12, 12, 12)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(buscar))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -220,91 +260,110 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void OrdRutMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdRutMaterialesActionPerformed
         // TODO add your handling code here:
+        if (file != null) {
+            txaorden.setText("");
+            bb.ordenMateriales();
 
-        txaorden.setText("");
-        bb.ordenMateriales();
+            for (Rutas ruta : bb.getRutasArray()) {
+                txaorden.append("\nid  --->  " + ruta.getId()
+                        + "\nMateriales  --->  " + ruta.getMSR()[0] + "%" + "\n---------------------------------");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Escoge el archivo!");
+        }
 
-        for (Rutas ruta : bb.getRutasArray()) {
-            txaorden.append("\nid  --->  " + ruta.getId()
-                    + "\nMateriales  --->  " + ruta.getMSR()[0] + "%" + "\n---------------------------------");
     }//GEN-LAST:event_OrdRutMaterialesActionPerformed
-    }
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        if (file != null) {
+            txaorden1.setText("");
+            bb.ordenUnidadesOperativas();
 
-        txaorden1.setText("");
-        bb.ordenUnidadesOperativas();
+            for (Rutas ruta : bb.getRutasArray()) {
+                txaorden1.append("\nid  --->  " + ruta.getId()
+                        + "\nUnidades Operativas  --->  " + ruta.getMSR()[1] + "%" + "\n------------------------------------------------");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Escoge el archivo!");
+        }
 
-        for (Rutas ruta : bb.getRutasArray()) {
-            txaorden1.append("\nid  --->  " + ruta.getId()
-                    + "\nUnidades Operativas  --->  " + ruta.getMSR()[1] + "%" + "\n------------------------------------------------");
     }//GEN-LAST:event_jButton4ActionPerformed
-    }
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if (file != null) {
+            txaorden2.setText("");
+            bb.ordenTiempo();
+            for (Rutas ruta : bb.getRutasArray()) {
+                txaorden2.append("\nid  --->  " + ruta.getId()
+                        + "\nTiempo estimado de evacuacion  --->  " + ruta.getEVT() + "\n---------------------------------------------------------------");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Escoge el archivo!");
+        }
 
-        txaorden2.setText("");
-        bb.ordenTiempo();
 
-        for (Rutas ruta : bb.getRutasArray()) {
-            txaorden2.append("\nid  --->  " + ruta.getId()
-                    + "\nTiempo estimado de evacuacion  --->  " + ruta.getEVT() + "\n---------------------------------------------------------------");
     }//GEN-LAST:event_jButton2ActionPerformed
-    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:      
-        txarutas.setText("");
-        DecimalFormat dc = new DecimalFormat("#.00");
-        Rutas[] rutasArray = bb.imprimir();
+        if (file != null) {
+            txarutas.setText("");
+            DecimalFormat dc = new DecimalFormat("#.00");
+            Rutas[] rutasArray = bb.imprimir();
 
-        for (Rutas one : rutasArray) {
-            txarutas.append(
-                    "\nid --> " + one.getId()
-                    + "\nTiempo estimado de evacuacion --> " + one.getEVT()
-                    + "\nEvacuados no expuestos --> " + one.getENE()
-                    + "\nTiempo en que se encontro la solucion --> " + one.getTiempoSolution()
-                    + "\nPNS file --> " + one.getPNS()[0] + " & " + one.getPNS()[1]
-                    + "\nTotal size of the network --> " + one.getTSN()[0] + " & " + one.getTSN()[1]
-                    + "\nInessential Material(s) & Operating Unit(s) --> " + one.getIMOU()[0] + " & " + one.getIMOU()[1]
-                    + "\nMaximal structure --> " + one.getMS()[0] + " & " + one.getMS()[1]
-                    + "\nMaximal Structure % Reduction --> " + one.getMSR()[0] + "%" + " & " + one.getMSR()[1] + "%"
-                    + "\nUtilizacion de arcos --> " + String.format("% .2f", one.getUA())
-                    + "\nAverage Time Periods for Evacuees to Evacuate Building -->" + one.getATPEEB()
-                    + "\nAverageEvacueesperTimePeriod -->" + one.getAET()
-                    + "\nArcos usados ---> ");
-            for (Arco data : one.getArco()) {
-                txarutas.append(data.getId() + "   ");
-            }
-
-            txarutas.append("\nArcos no usados --> ");
-            for (Arco data : one.getArcoNoUse()) {
-                txarutas.append(data.getId() + "  ");
-
-            }
-
-            txarutas.append("\nMovimiento de los arcos\n");
-            for (Arco data : one.getArco()) {
-                txarutas.append(data.getId() + ";" + data.getEAT()
-                        + ";" + data.getMax() + ";" + data.getEmta() + ";" + data.getBSI()
-                        + ";" + data.getTTP());
-                for (String three : data.getTPM()) {
-                    txarutas.append(";" + three);
+            for (Rutas one : rutasArray) {
+                txarutas.append(
+                        "\nid --> " + one.getId()
+                        + "\nTiempo estimado de evacuacion --> " + one.getEVT()
+                        + "\nEvacuados no expuestos --> " + one.getENE()
+                        + "\nTiempo en que se encontro la solucion --> " + one.getTiempoSolution()
+                        + "\nPNS file --> " + one.getPNS()[0] + " & " + one.getPNS()[1]
+                        + "\nTotal size of the network --> " + one.getTSN()[0] + " & " + one.getTSN()[1]
+                        + "\nInessential Material(s) & Operating Unit(s) --> " + one.getIMOU()[0] + " & " + one.getIMOU()[1]
+                        + "\nMaximal structure --> " + one.getMS()[0] + " & " + one.getMS()[1]
+                        + "\nMaximal Structure % Reduction --> " + one.getMSR()[0] + "%" + " & " + one.getMSR()[1] + "%"
+                        + "\nUtilizacion de arcos --> " + String.format("% .2f", one.getUA())
+                        + "\nAverage Time Periods for Evacuees to Evacuate Building -->" + one.getATPEEB()
+                        + "\nAverageEvacueesperTimePeriod -->" + one.getAET()
+                        + "\nArcos usados ---> ");
+                for (Arco data : one.getArco()) {
+                    txarutas.append(data.getId() + "   ");
                 }
-                txarutas.append("\n");
-            }
 
-            String[] cummulative = one.getCummulative();
-            for (String data : cummulative) {
-                txarutas.append("Cummulative " + data + "%\n");
-            }
+                txarutas.append("\nArcos no usados --> ");
+                for (Arco data : one.getArcoNoUse()) {
+                    txarutas.append(data.getId() + "  ");
 
-            txarutas.append("\nNodes\n");
-            Nodo[] nodos = one.getNod();
-            for (Nodo nodo : nodos) {
-                txarutas.append("\nNode Clearence Time " + nodo.getId() + " " + nodo.getTiempoVacio());
-                txarutas.append("\nAverage Evacuess Waiting per Time Period " + nodo.getId() + " " + nodo.getPromTiempo() + "\n");
+                }
+
+                txarutas.append("\nMovimiento de los arcos\n");
+                for (Arco data : one.getArco()) {
+                    txarutas.append(data.getId() + ";" + data.getEAT()
+                            + ";" + data.getMax() + ";" + data.getEmta() + ";" + data.getBSI()
+                            + ";" + data.getTTP());
+                    for (String three : data.getTPM()) {
+                        txarutas.append(";" + three);
+                    }
+                    txarutas.append("\n");
+                }
+
+                String[] cummulative = one.getCummulative();
+                for (String data : cummulative) {
+                    txarutas.append("Cummulative " + data + "%\n");
+                }
+
+                txarutas.append("\nNodes\n");
+                Nodo[] nodos = one.getNod();
+                for (Nodo nodo : nodos) {
+                    txarutas.append("\nNode Clearence Time " + nodo.getId() + " " + nodo.getPromTiempo());
+                    txarutas.append("\nAverage Evacuess Waiting per Time Period " + nodo.getId() + " " + nodo.getTiempoVacio() + "\n");
+                }
+                txarutas.append("-------------------------------------------------------------------------------------------------------");
             }
-            txarutas.append("-------------------------------------------------------------------------------------------------------");
+        } else {
+            JOptionPane.showMessageDialog(null, "Escoge el archivo!");
         }
 
 
@@ -312,26 +371,35 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-
-        DecimalFormat dc = new DecimalFormat("#.00");
-        txaorden5.setText("");
-        bb.ordenPorcentajeArcosNoUsadosMenor();
-        for (Rutas ruta : bb.getRutasArray()) {
-            txaorden5.append("\nid --> " + ruta.getId()
-                    + "\nUtilizacion de arcos Menor a mayor --> " + String.format("% .2f", ruta.getUA()) + "%" + "\n----------------------------------------------------------");
+        if (file != null) {
+            DecimalFormat dc = new DecimalFormat("#.00");
+            txaorden5.setText("");
+            bb.ordenPorcentajeArcosNoUsadosMenor();
+            for (Rutas ruta : bb.getRutasArray()) {
+                txaorden5.append("\nid --> " + ruta.getId()
+                        + "\nUtilizacion de arcos Menor a mayor --> " + String.format("% .2f", ruta.getUA()) + "%" + "\n----------------------------------------------------------");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Escoge el archivo!");
         }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-
-        DecimalFormat dc = new DecimalFormat("#.00");
-        txaorden6.setText("");
-        bb.ordenPorcentaArcosNoUsadosMejor();
-        for (Rutas ruta : bb.getRutasArray()) {
-            txaorden6.append("\nid --> " + ruta.getId()
-                    + "\nUtilizacion de arcos Menor a mayor --> " + String.format("% .2f", ruta.getUA()) + "%" + "\n----------------------------------------------------------");
+        if (file != null) {
+            DecimalFormat dc = new DecimalFormat("#.00");
+            txaorden6.setText("");
+            bb.ordenPorcentaArcosNoUsadosMejor();
+            for (Rutas ruta : bb.getRutasArray()) {
+                txaorden6.append("\nid --> " + ruta.getId()
+                        + "\nUtilizacion de arcos Menor a mayor --> " + String.format("% .2f", ruta.getUA()) + "%" + "\n----------------------------------------------------------");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Escoge el archivo!");
         }
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void escogerArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escogerArchivoActionPerformed
@@ -343,6 +411,66 @@ public class Interfaz extends javax.swing.JFrame {
         }
         bb.leer(file.getAbsolutePath());
     }//GEN-LAST:event_escogerArchivoActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        if (file != null) {
+            int ide = Integer.parseInt(id.getText());
+            Rutas ruta = bb.printRutaId(ide);
+            if (ruta != null) {
+                busquedaId.setText("");
+                busquedaId.append("id --> " + ruta.getId()
+                        + "\nTiempo estimado de evacuacion --> " + ruta.getEVT()
+                        + "\nEvacuados no expuestos --> " + ruta.getENE()
+                        + "\nTiempo en que se encontro la solucion --> " + ruta.getTiempoSolution()
+                        + "\nPNS file --> " + ruta.getPNS()[0] + " & " + ruta.getPNS()[1]
+                        + "\nTotal size of the network --> " + ruta.getTSN()[0] + " & " + ruta.getTSN()[1]
+                        + "\nInessential Material(s) & Operating Unit(s) --> " + ruta.getIMOU()[0] + " & " + ruta.getIMOU()[1]
+                        + "\nMaximal structure --> " + ruta.getMS()[0] + " & " + ruta.getMS()[1]
+                        + "\nMaximal Structure % Reduction --> " + ruta.getMSR()[0] + "%" + " & " + ruta.getMSR()[1] + "%"
+                        + "\nUtilizacion de arcos --> " + String.format("% .2f", ruta.getUA())
+                        + "\nAverage Time Periods for Evacuees to Evacuate Building -->" + ruta.getATPEEB()
+                        + "\nAverageEvacueesperTimePeriod -->" + ruta.getAET()
+                        + "\nArcos\n");
+                for (Arco data : ruta.getArco()) {
+                    busquedaId.append(data.getId() + " ");
+                }
+
+                busquedaId.append("\nArcos no usados --> ");
+                for (Arco data : ruta.getArcoNoUse()) {
+                    busquedaId.append(data.getId() + " ");
+                }
+
+                busquedaId.append("\nMovimiento de los arcos\n");
+                for (Arco data : ruta.getArco()) {
+                    busquedaId.append(data.getId() + ";" + data.getEAT()
+                            + ";" + data.getMax() + ";" + data.getEmta() + ";" + data.getBSI()
+                            + ";" + data.getTTP());
+                    for (String one : data.getTPM()) {
+                        busquedaId.append(";" + one);
+                    }
+                    busquedaId.append("\n");
+                }
+
+                String[] cummulative = ruta.getCummulative();
+                for (String data : cummulative) {
+                    busquedaId.append("\nCummulative " + data + "%");
+                }
+
+                busquedaId.append("\nNodes");
+                Nodo[] nodos = ruta.getNod();
+                for (Nodo nodo : nodos) {
+                    busquedaId.append("\nNode Clearence Time " + nodo.getId() + " " + nodo.getPromTiempo());
+                    busquedaId.append("\nAverage Evacuess Waiting per Time Period " + nodo.getId() + " " + nodo.getTiempoVacio());
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Ruta no existente");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Escoge el archivo!");
+        }
+
+    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,19 +509,24 @@ public class Interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OrdRutMateriales;
+    private javax.swing.JButton buscar;
+    private javax.swing.JTextArea busquedaId;
     private javax.swing.JButton escogerArchivo;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea txaorden;
     private javax.swing.JTextArea txaorden1;
     private javax.swing.JTextArea txaorden2;
