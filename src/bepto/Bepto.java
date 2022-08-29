@@ -22,12 +22,11 @@ public class Bepto {
     }
 
     public Bepto() {
-        leer("hola");
+        
     }
 
     public Rutas[] leer(String file) {
 
-        file = "src/File/2S_FSJ.b2pFloorMapReport.txt";
         Path path = Paths.get(file);
         String linea = "";
         String line = "****************************************************************";

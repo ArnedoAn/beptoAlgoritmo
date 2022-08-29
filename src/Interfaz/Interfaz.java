@@ -8,14 +8,20 @@ import bepto.Arco;
 import bepto.Bepto;
 import bepto.Nodo;
 import bepto.Rutas;
+import java.io.File;
 import java.text.DecimalFormat;
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author jaug1
  */
 public class Interfaz extends javax.swing.JFrame {
-        Bepto bb=new Bepto();
+
+    Bepto bb = new Bepto();
+    JFileChooser selectFile = new JFileChooser();
+    File file;
+
     /**
      * Creates new form Interfaz
      */
@@ -51,6 +57,7 @@ public class Interfaz extends javax.swing.JFrame {
         txaorden5 = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
         txaorden6 = new javax.swing.JTextArea();
+        escogerArchivo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,49 +138,57 @@ public class Interfaz extends javax.swing.JFrame {
         txaorden6.setRows(5);
         jScrollPane6.setViewportView(txaorden6);
 
+        escogerArchivo.setText("Archivo");
+        escogerArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                escogerArchivoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(469, 469, 469)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(OrdRutMateriales, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(733, 733, 733))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1745, 1745, 1745))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escogerArchivo)
+                .addGap(391, 391, 391)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(escogerArchivo))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,12 +207,12 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addComponent(jButton5)
                                 .addComponent(jButton2))))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6))
-                .addGap(174, 174, 174))
+                    .addComponent(jScrollPane6)
+                    .addComponent(jScrollPane2))
+                .addGap(197, 197, 197))
         );
 
         pack();
@@ -205,35 +220,35 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void OrdRutMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdRutMaterialesActionPerformed
         // TODO add your handling code here:
-        
+
         txaorden.setText("");
         bb.ordenMateriales();
-        
+
         for (Rutas ruta : bb.getRutasArray()) {
-            txaorden.append("\nid  --->  "+ruta.getId()
-                    +"\nMateriales  --->  "+ruta.getMSR()[0]+"%"+"\n---------------------------------");
+            txaorden.append("\nid  --->  " + ruta.getId()
+                    + "\nMateriales  --->  " + ruta.getMSR()[0] + "%" + "\n---------------------------------");
     }//GEN-LAST:event_OrdRutMaterialesActionPerformed
     }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+
         txaorden1.setText("");
         bb.ordenUnidadesOperativas();
-        
+
         for (Rutas ruta : bb.getRutasArray()) {
-            txaorden1.append("\nid  --->  "+ruta.getId()
-                    +"\nUnidades Operativas  --->  "+ruta.getMSR()[1]+"%"+"\n------------------------------------------------");
+            txaorden1.append("\nid  --->  " + ruta.getId()
+                    + "\nUnidades Operativas  --->  " + ruta.getMSR()[1] + "%" + "\n------------------------------------------------");
     }//GEN-LAST:event_jButton4ActionPerformed
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         txaorden2.setText("");
         bb.ordenTiempo();
-        
+
         for (Rutas ruta : bb.getRutasArray()) {
-            txaorden2.append("\nid  --->  "+ruta.getId()
-                    +"\nTiempo estimado de evacuacion  --->  "+ruta.getEVT()+"\n---------------------------------------------------------------");
+            txaorden2.append("\nid  --->  " + ruta.getId()
+                    + "\nTiempo estimado de evacuacion  --->  " + ruta.getEVT() + "\n---------------------------------------------------------------");
     }//GEN-LAST:event_jButton2ActionPerformed
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -244,7 +259,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         for (Rutas one : rutasArray) {
             txarutas.append(
-            "\nid --> " + one.getId()
+                    "\nid --> " + one.getId()
                     + "\nTiempo estimado de evacuacion --> " + one.getEVT()
                     + "\nEvacuados no expuestos --> " + one.getENE()
                     + "\nTiempo en que se encontro la solucion --> " + one.getTiempoSolution()
@@ -261,11 +276,10 @@ public class Interfaz extends javax.swing.JFrame {
                 txarutas.append(data.getId() + "   ");
             }
 
-                txarutas.append("\nArcos no usados --> ");
+            txarutas.append("\nArcos no usados --> ");
             for (Arco data : one.getArcoNoUse()) {
-                txarutas.append(data.getId()+"  ");
-                
-                
+                txarutas.append(data.getId() + "  ");
+
             }
 
             txarutas.append("\nMovimiento de los arcos\n");
@@ -288,22 +302,21 @@ public class Interfaz extends javax.swing.JFrame {
             Nodo[] nodos = one.getNod();
             for (Nodo nodo : nodos) {
                 txarutas.append("\nNode Clearence Time " + nodo.getId() + " " + nodo.getTiempoVacio());
-                txarutas.append("\nAverage Evacuess Waiting per Time Period " + nodo.getId() + " " + nodo.getPromTiempo()+"\n");
+                txarutas.append("\nAverage Evacuess Waiting per Time Period " + nodo.getId() + " " + nodo.getPromTiempo() + "\n");
             }
             txarutas.append("-------------------------------------------------------------------------------------------------------");
         }
 
-        
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-       
+
         DecimalFormat dc = new DecimalFormat("#.00");
         txaorden5.setText("");
         bb.ordenPorcentajeArcosNoUsadosMenor();
-        for(Rutas ruta: bb.getRutasArray()){
+        for (Rutas ruta : bb.getRutasArray()) {
             txaorden5.append("\nid --> " + ruta.getId()
                     + "\nUtilizacion de arcos Menor a mayor --> " + String.format("% .2f", ruta.getUA()) + "%" + "\n----------------------------------------------------------");
         }
@@ -311,16 +324,25 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        
+
         DecimalFormat dc = new DecimalFormat("#.00");
         txaorden6.setText("");
         bb.ordenPorcentaArcosNoUsadosMejor();
-        for(Rutas ruta: bb.getRutasArray()){
+        for (Rutas ruta : bb.getRutasArray()) {
             txaorden6.append("\nid --> " + ruta.getId()
                     + "\nUtilizacion de arcos Menor a mayor --> " + String.format("% .2f", ruta.getUA()) + "%" + "\n----------------------------------------------------------");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
-    
+
+    private void escogerArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escogerArchivoActionPerformed
+        selectFile.setCurrentDirectory(new File("."));
+        selectFile.setDialogTitle("Seleccione archivo");
+        selectFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        if (selectFile.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            file = selectFile.getSelectedFile();
+        }
+        bb.leer(file.getAbsolutePath());
+    }//GEN-LAST:event_escogerArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,6 +381,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OrdRutMateriales;
+    private javax.swing.JButton escogerArchivo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
