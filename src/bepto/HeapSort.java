@@ -13,6 +13,7 @@ public class HeapSort {
     public void sort(Rutas arr[])
     {
         int N = arr.length;
+        build(arr, N);
  
         for (int i = N / 2 - 1; i >= 0; i--)
             heapify(arr, N, i);
@@ -47,6 +48,12 @@ public class HeapSort {
 
             heapify(arr, N, largest);
         }
+    }
+    
+    public void build (Rutas arr[], int N){
+ 
+        for (int i = N / 2 - 1; i >= 0; i--)
+            heapify(arr, N, i);
     }
     
 }

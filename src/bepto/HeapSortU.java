@@ -13,8 +13,7 @@ public class HeapSortU {
     {
         int N = arr.length;
  
-        for (int i = N / 2 - 1; i >= 0; i--)
-            heapify(arr, N, i);
+        build(arr, N);
  
         for (int i = N - 1; i > 0; i--) {
             Rutas rtemp = arr[0];
@@ -47,5 +46,9 @@ public class HeapSortU {
             heapify(arr, N, largest);
         }
     }
-    
+    public void build (Rutas arr[], int N){
+ 
+        for (int i = N / 2 - 1; i >= 0; i--)
+            heapify(arr, N, i);
+    }
 }
