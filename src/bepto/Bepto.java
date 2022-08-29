@@ -11,19 +11,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import List.*;
 import java.text.DecimalFormat;
-import static bepto.HeapSort.printArray;
-import static bepto.HeapSortM.printArray1;
-import static bepto.HeapSortU.printArray2;
-import static bepto.HeapSortUA.printArray3;
-import static bepto.HeapSortUA2.printArray4;
+
+
 
 public class Bepto {
 
     Rutas[] rutasArray;
     List<Rutas> rutasList = new List<Rutas>();
 
-    public Bepto() {
+    public Rutas[] getRutasArray() {
+        return rutasArray;
+    }
+    
 
+    public Bepto() {
+        leer("hola");
     }
 
     public Rutas[] leer(String file) {
@@ -278,38 +280,38 @@ public class Bepto {
     }
 
     public void ordenPorcentajeArcosNoUsadosMenor() {
-        Rutas[] rutasArray = rutasList.toArrayRutas();
+        rutasArray = rutasList.toArrayRutas();
         HeapSortUA objUA = new HeapSortUA();
         objUA.sort(rutasArray);
-        printArray3(rutasArray);
+        
     }
 
     public void ordenPorcentaArcosNoUsadosMejor() {
-        Rutas[] rutasArray = rutasList.toArrayRutas();
+        rutasArray = rutasList.toArrayRutas();
         HeapSortUA2 objUAa = new HeapSortUA2();
         objUAa.sort(rutasArray);
-        printArray4(rutasArray);
+        
     }
 
     public void ordenMateriales() {
-        Rutas[] rutasArray = rutasList.toArrayRutas();
+        rutasArray = rutasList.toArrayRutas();
         HeapSortM obj = new HeapSortM();
         obj.sort(rutasArray);
-        printArray1(rutasArray);
+        
     }
 
     public void ordenUnidadesOperativas() {
-        Rutas[] rutasArray = rutasList.toArrayRutas();
+        rutasArray = rutasList.toArrayRutas();
         HeapSortU objt = new HeapSortU();
         objt.sort(rutasArray);
-        printArray2(rutasArray);
+
     }
 
     public void ordenTiempo() {
-        Rutas[] rutasArray = rutasList.toArrayRutas();
+        rutasArray = rutasList.toArrayRutas();
         HeapSort ob = new HeapSort();
         ob.sort(rutasArray);
-        printArray(rutasArray);
+        
     }
 
     public void printRutas() {
@@ -425,5 +427,9 @@ public class Bepto {
             System.out.println("Average Evacuess Waiting per Time Period " + nodo.getId() + " " + nodo.getPromTiempo());
         }
 
+    }
+    
+    public Rutas[] imprimir(){
+        return rutasList.toArrayRutas();
     }
 }

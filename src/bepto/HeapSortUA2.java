@@ -54,14 +54,5 @@ public class HeapSortUA2 {
         }
     }
 
-    public static void printArray4(Rutas arr[]) {
-        DecimalFormat dc = new DecimalFormat("#.00");
-        int N = arr.length;
 
-        for (int i = 0; i < N; ++i) {
-            System.out.println("id --> " + arr[i].getId()
-                    + "\nPorcentaje utilizacion de arcos Mayor a menor --> " + String.format("% .2f", arr[i].getUA()) + "%" + "\n----------------------------------------------------------");
-        }
-
-    }
 }

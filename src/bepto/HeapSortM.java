@@ -47,14 +47,6 @@ public class HeapSortM {
             heapify(arr, N, largest);
         }
     }
-public static void printArray1(Rutas arr[]){
-        
-        int N = arr.length;
- 
-        for (int i = 0; i < N; ++i)
-            System.out.println("id --> "+arr[i].getId()
-                    +"\nMateriales  --> "+arr[i].getMSR()[0]+"%"+"\n------------------------------------------");  
-        
-    }    
+    
 }
 

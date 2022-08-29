@@ -48,13 +48,5 @@ public class HeapSort {
             heapify(arr, N, largest);
         }
     }
-public static void printArray(Rutas arr[]){
-        
-        int N = arr.length;
- 
-        for (int i = 0; i < N; ++i)
-            System.out.println("id --> "+arr[i].getId()
-                    +"\nTiempo de estimado de evacuacion --> "+arr[i].getEVT()+"\n--------------------------------------------");  
-        
-    }    
+    
 }
