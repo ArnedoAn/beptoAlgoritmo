@@ -12,8 +12,6 @@ import java.nio.file.Paths;
 import List.*;
 import java.text.DecimalFormat;
 
-
-
 public class Bepto {
 
     Rutas[] rutasArray;
@@ -22,7 +20,6 @@ public class Bepto {
     public Rutas[] getRutasArray() {
         return rutasArray;
     }
-    
 
     public Bepto() {
         leer("hola");
@@ -67,7 +64,7 @@ public class Bepto {
                     for (String data : campo) {
                         arcoTemp = new Arco();
                         arcoTemp.setId(data);
-                        rutaTemp.addArco(arcoTemp);
+                        rutaTemp.setArco(arcoTemp);
                     }
 
                 } else if (linea.contains("Unused Arcs")) { //Guardar arcos no usados
@@ -195,19 +192,8 @@ public class Bepto {
                     }
                     arcoTemp = new Arco();
                     campo = linea.split(";");
-                    int index = 0;
-
-                    int x = 0;
-                    while (x < rutaTemp.getArco().length) {
-                        if (rutaTemp.getArco()[x].getId().equals(campo[0])) {
-                            index = x;
-                            break;
-                        }
-                        x++;
-                    }
-
-                    arcoTemp = rutaTemp.getArco()[index];
-
+                    
+                    arcoTemp.setId(campo[0]);
                     arcoTemp.setEAT(Double.parseDouble(campo[1]));
                     arcoTemp.setMax(Double.parseDouble(campo[2]));
                     arcoTemp.setEmta(Double.parseDouble(campo[3]));
@@ -222,7 +208,7 @@ public class Bepto {
 
                     arcoTemp.setTPM(TPM);
 
-                    rutaTemp.setArcos(arcoTemp, index);
+                    rutaTemp.addArco(arcoTemp);
 
                 } else if (linea.contains("Arc Utilization")) { // Guardar Arc Utilization
 
@@ -283,21 +269,21 @@ public class Bepto {
         rutasArray = rutasList.toArrayRutas();
         HeapSortUA objUA = new HeapSortUA();
         objUA.sort(rutasArray);
-        
+
     }
 
     public void ordenPorcentaArcosNoUsadosMejor() {
         rutasArray = rutasList.toArrayRutas();
         HeapSortUA2 objUAa = new HeapSortUA2();
         objUAa.sort(rutasArray);
-        
+
     }
 
     public void ordenMateriales() {
         rutasArray = rutasList.toArrayRutas();
         HeapSortM obj = new HeapSortM();
         obj.sort(rutasArray);
-        
+
     }
 
     public void ordenUnidadesOperativas() {
@@ -311,7 +297,7 @@ public class Bepto {
         rutasArray = rutasList.toArrayRutas();
         HeapSort ob = new HeapSort();
         ob.sort(rutasArray);
-        
+
     }
 
     public void printRutas() {
@@ -428,8 +414,8 @@ public class Bepto {
         }
 
     }
-    
-    public Rutas[] imprimir(){
+
+    public Rutas[] imprimir() {
         return rutasList.toArrayRutas();
     }
 }

@@ -169,11 +169,12 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(OrdRutMateriales)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -267,11 +268,12 @@ public class Interfaz extends javax.swing.JFrame {
                 for (String three : data.getTPM()) {
                     txarutas.append(";" + three);
                 }
+                txarutas.append("\n");
             }
 
             String[] cummulative = one.getCummulative();
             for (String data : cummulative) {
-                txarutas.append("\nCummulative " + data + "%");
+                txarutas.append("Cummulative " + data + "%\n");
             }
 
             txarutas.append("\nNodes\n");
